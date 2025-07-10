@@ -1,13 +1,25 @@
+
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from '../firebase';
+import useAuthStore from '../store/authStore';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const { setUser } = useAuthStore();
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Login attempted with:', { email, password });
-        // Add your login logic here (e.g., API call to authenticate)
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            setUser(userCredential.user, true);
+            navigate('/');
+        } catch (error) {
+            setError(error.message);
+        }
     };
 
     return (
@@ -23,6 +35,7 @@ const Login = () => {
                 </div>
                 <h2 className="text-xl font-semibold text-center text-gray-800 mb-4">Sign in</h2>
                 <h3 className="text-sm text-center text-gray-600 text-[12px] mb-6">Use your Google Account</h3>
+                {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
                 <div>
                     <div className="mb-4">
                         <input
@@ -43,8 +56,8 @@ const Login = () => {
                         />
                     </div>
                     <div className="flex justify-between items-center mb-4">
-                        <a href="#" className="text-blue-600 text-sm hover:underline">Forgot email?</a>
-                        <a href="#" className="text-blue-600 text-sm hover:underline">Forgot password?</a>
+                        <Link to="/forgot-email" className="text-blue-600 text-sm hover:underline">Forgot email?</Link>
+                        <Link to="/forgot-password" className="text-blue-600 text-sm hover:underline">Forgot password?</Link>
                     </div>
                     <div className="flex justify-end">
                         <button
@@ -52,12 +65,12 @@ const Login = () => {
                             type="button"
                             onClick={handleSubmit}
                         >
-                            Next
+                            Sign In
                         </button>
                     </div>
                 </div>
                 <div className="mt-6 text-center">
-                    <a href="#" className="text-blue-600 text-sm hover:underline">Create account</a>
+                    <Link to="/signup" className="text-blue-600 text-sm hover:underline">Create account</Link>
                 </div>
             </div>
         </div>
