@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../utils/firebase";
-import { useUserStore } from "../store/userStore";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "../store/userStore";
 
 export default function Login() {
   const [error, setError] = useState("");
