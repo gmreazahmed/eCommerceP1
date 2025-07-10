@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="bg-gray-100 text-gray-700 py-8 mt-10">
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="mx-auto px-[36px] sm:px-[40px] md:px-[48px] lg:px-[64px] xl:px-[96px] 2xl:px-[128px] grid grid-cols-1 md:grid-cols-3 gap-8 justify-between">
         {/* Logo and Description */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">MyShop</h2>
+          <div className="text-[15px] sm:text-[16px] md:text-[20px] lg:text-[24px] xl:text-[32px] 2xl:text-[36px] font-bold text-blue-600">
+            <Link to="/">MyShop</Link>
+          </div>
           <p className="text-sm">
-            Your one-stop shop for all your needs. We deliver quality products
+            Your one-stop shop for all your needs. We deliver <br/> quality products 
             at the best prices.
           </p>
         </div>
