@@ -6,6 +6,7 @@ import Login from "../component/common/Login";
 import Signup from "../component/common/Signup";
 import NotFound from "../component/common/NotFound";
 import About from './../pages/About';
+import Products from "../products/Products";
 
 
 export const router = createBrowserRouter([
@@ -14,7 +15,8 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { index: true, element: <Home/>},
-      { index: "/about", element: <About/>},
+      { path: "/about", element: <About/>},
+      { path: "/products", element: <Products/>},
       
     ]
   },
