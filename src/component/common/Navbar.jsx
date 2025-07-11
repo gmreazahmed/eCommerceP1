@@ -1,6 +1,5 @@
 // src/components/Navbar.jsx
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
 import { Menu, X, ShoppingCart, UserCircle2 } from "lucide-react";
 import { useUserStore } from "../../store/userStore";
